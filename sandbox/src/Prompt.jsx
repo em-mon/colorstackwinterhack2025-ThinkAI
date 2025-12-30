@@ -4,16 +4,20 @@ import Content from './components/Content.jsx';
 import Input from './components/Input.jsx';
 import styles from './modules/Prompt.module.css';
 
+import { aiNeedAnalyzer } from '../../core/aiNeedAnalyzer';
+
 export default function Prompt() {
   const [submitted, setSubmitted] = useState(false);
   const [submittedPrompt, setSubmittedPrompt] = useState('');
+  const [needAnalysis, setNeedAnalysis] = useState(null); 
   const [prompt, setPrompt] = useState('');
 
   const handleSend = () => {
     console.info("Entered handleSend")
-    // send error if empty message ???
     if (prompt.trim()) {
+      const firstAnalysis = aiNeedAnalyzer(prompt); 
       setSubmittedPrompt(prompt);
+      setNeedAnalysis(firstAnalysis);
       setSubmitted(true);
     }
   };
@@ -23,7 +27,8 @@ export default function Prompt() {
       <Menu />
       <Content 
         submitted={submitted} 
-        submittedPrompt={submittedPrompt} 
+        submittedPrompt={submittedPrompt}
+        needAnalysis={needAnalysis}  
       />
       <Input 
         prompt={prompt}
