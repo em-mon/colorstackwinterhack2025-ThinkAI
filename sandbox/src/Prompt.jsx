@@ -15,18 +15,40 @@ export default function Prompt() {
   const [strengthAnalysis, setStrengthAnalysis] = useState(null);
   const [resourceAnalysis, setResourceAnalysis] = useState(null);
   const [prompt, setPrompt] = useState('');
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleSend = () => {
     if (prompt.trim()) {
-      const needResult = aiNeedAnalyzer(prompt);
-      const strengthResult = promptStrengthAnalyzer(prompt);
-      const resourceResult = resourceAnalyzer(prompt);
-      
-      setSubmittedPrompt(prompt);
-      setNeedAnalysis(needResult);
-      setStrengthAnalysis(strengthResult);
-      setResourceAnalysis(resourceResult);
-      setSubmitted(true);
+      // Check if title is still visible (first submission)
+      if (!submitted) {
+        setIsAnimating(true);
+        
+        // Wait for animation to complete before showing results
+        setTimeout(() => {
+          const needResult = aiNeedAnalyzer(prompt);
+          const strengthResult = promptStrengthAnalyzer(prompt);
+          const resourceResult = resourceAnalyzer(prompt);
+          
+          setSubmittedPrompt(prompt);
+          setNeedAnalysis(needResult);
+          setStrengthAnalysis(strengthResult);
+          setResourceAnalysis(resourceResult);
+          setSubmitted(true);
+          setIsAnimating(false);
+          setPrompt('');
+        }, 1500); // Match animation duration
+      } else {
+        // Instant update for subsequent submissions (title already hidden)
+        const needResult = aiNeedAnalyzer(prompt);
+        const strengthResult = promptStrengthAnalyzer(prompt);
+        const resourceResult = resourceAnalyzer(prompt);
+        
+        setSubmittedPrompt(prompt);
+        setNeedAnalysis(needResult);
+        setStrengthAnalysis(strengthResult);
+        setResourceAnalysis(resourceResult);
+        setPrompt('');
+      }
     }
   };
 
@@ -39,11 +61,14 @@ export default function Prompt() {
         needAnalysis={needAnalysis}
         strengthAnalysis={strengthAnalysis}
         resourceAnalysis={resourceAnalysis}
+        isAnimating={isAnimating}
       />
       <Input 
         prompt={prompt}
         setPrompt={setPrompt}
         handleSend={handleSend}
+        isAnimating={isAnimating}
+        shouldAnimate={!submitted}
       />
     </div>
   );

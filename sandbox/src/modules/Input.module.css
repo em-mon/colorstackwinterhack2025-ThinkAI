@@ -4,8 +4,10 @@
     align-items: flex-end;
     padding: 20px; 
     margin-left: 80px;
-    gap: 10px; 
+    gap: 10px;
+    position: relative;
 }
+
 .text-box {
     color: #082122;
     background-color: white;
@@ -16,7 +18,12 @@
     border-radius: 12px;
     font-size: 1rem;
     resize: vertical;
-    transition: border-color 0.3s;
+    transition: all 0.3s;
+}
+
+.text-box.animating {
+    opacity: 0.3;
+    transform: scale(0.95);
 }
 
 .text-box:focus {
@@ -41,7 +48,7 @@
     height: fit-content;
 }
 
-.send-button:hover {
+.send-button:hover:not(:disabled) {
     background: linear-gradient(135deg, #295b53, #082122);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(8, 33, 34, 0.3);
@@ -51,4 +58,64 @@
     transform: translateY(0);
 }
 
+.send-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 
+/* Single floating bubble animation */
+.floatingBubble {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #fcff9a, #19b35c);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(8, 33, 34, 0.4);
+    pointer-events: none;
+    z-index: 100;
+    
+    /* Position at top center of textarea */
+    left: 50%;
+    bottom: 150px;
+    transform: translateX(-50%);
+    
+    animation: suckInAndFloat 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+.bubbleText {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #082122;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: clip;
+    max-width: 50px;
+    max-height: 50px;
+    line-height: 1.2;
+    padding: 5px;
+}
+
+@keyframes suckInAndFloat {
+    0% {
+        transform: translateX(-50%) scale(0);
+        opacity: 0;
+        bottom: 150px;
+    }
+    15% {
+        transform: translateX(-50%) scale(1.2);
+        opacity: 1;
+        bottom: 160px;
+    }
+    25% {
+        transform: translateX(-50%) scale(1);
+        bottom: 170px;
+    }
+    100% {
+        transform: translateX(-50%) scale(0.5);
+        opacity: 0;
+        bottom: 600px;
+    }
+}

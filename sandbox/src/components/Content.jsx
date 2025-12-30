@@ -1,19 +1,19 @@
 import styles from '../modules/Content.module.css';
 
-export default function Content({ submitted, submittedPrompt, needAnalysis, strengthAnalysis, resourceAnalysis }) {
+export default function Content({ submitted, submittedPrompt, needAnalysis, strengthAnalysis, resourceAnalysis, isAnimating }) {
   return (
     <div className={styles.container}>
-      {!submitted ? (
+      {!submitted && !isAnimating ? (
         <div className={styles["text-area"]}>
           <h1 className={styles.title}>THINK AI</h1>
           <p className={styles.slogan}>Teaching users to THINK before they prompt</p>
         </div>
-      ) : (
+      ) : submitted ? (
         <div className={styles.results}>
-          <div className={styles.bubble}>
+          <div className={`${styles.bubble} ${styles.bubbleBurst}`}>
             <p className={styles.submitted}>{submittedPrompt}</p>
           </div>
-          <div className={styles["rectangle-container"]}>
+          <div className={`${styles["rectangle-container"]} ${styles.fadeIn}`}>
             <div className={styles.rectangle}>
               <h3 className={styles["rectangle-title"]}>AI Need Detector</h3>
               {needAnalysis ? (
@@ -182,7 +182,7 @@ export default function Content({ submitted, submittedPrompt, needAnalysis, stre
             </div>
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
