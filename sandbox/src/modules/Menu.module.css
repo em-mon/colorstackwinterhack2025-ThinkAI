@@ -1,0 +1,31 @@
+.container {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.button {
+    background-color: white;
+    border-radius: 25%;
+    width: 40px;
+    height: 40px;
+}
+
+.button:hover {
+    background-color: rgb(141, 141, 141);
+}
+
+.icon {
+    color: black;
+}
+
+.menu {
+    margin-top: 5px;
+    border: black solid 2px;
+    background-color: white;
+}
+
+.content {
+    padding: 10px;
+    color: rgb(0, 0, 0);
+}
