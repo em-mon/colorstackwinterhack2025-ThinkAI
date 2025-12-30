@@ -1,0 +1,77 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1; 
+}
+
+.text-area {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 10rem;
+    color: rgb(33, 66, 44);
+}
+
+.slogan {
+    text-align: center;
+    font-size: 2rem;
+    color: rgb(20, 42, 19);
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    gap: 30px;
+}
+
+.bubble {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+}
+
+.submitted {
+    font-size: 1.2rem;
+    color: rgb(33, 66, 44);
+    max-width: 450px;
+    height: fit-content;
+}
+
+.rectangle-container {
+    display: flex;
+    flex-direction: row; 
+    gap: 20px; 
+    width: 100%;
+}
+
+.rectangle {
+    flex: 1; 
+    border: 4px solid gray; 
+    background-color: white;
+    padding: 40px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+    height: 450px;
+}
+
+.rectangle:hover {
+    border-color: rgb(151, 176, 135);
+}
+
+.rectangle-text {
+    text-align: center;
+    font-size: 1.5rem;
+    color: rgb(33, 66, 44);
+}
