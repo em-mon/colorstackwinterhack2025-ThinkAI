@@ -1,6 +1,6 @@
 import styles from '../modules/Content.module.css';
 
-export default function Content({ submitted, submittedPrompt, needAnalysis }) {
+export default function Content({ submitted, submittedPrompt, needAnalysis, strengthAnalysis }) {
   return (
     <div className={styles.container}>
       {!submitted ? (
@@ -49,7 +49,57 @@ export default function Content({ submitted, submittedPrompt, needAnalysis }) {
               )}
             </div>
             <div className={styles.rectangle}>
-              <p className={styles["rectangle-text"]}>Two</p>
+              <h3 className={styles["rectangle-title"]}>Prompt Quality</h3>
+              {strengthAnalysis ? (
+                <div className={styles["analysis-content"]}>
+                  <p><strong>Overall Score:</strong> {strengthAnalysis.overallScore}/10</p>
+                  
+                  <div className={styles["score-breakdown"]}>
+                    <p><strong>Breakdown:</strong></p>
+                    <ul>
+                      <li>Clarity: {strengthAnalysis.breakdown.clarity}/10</li>
+                      <li>Specificity: {strengthAnalysis.breakdown.specificity}/10</li>
+                      <li>Structure: {strengthAnalysis.breakdown.structure}/10</li>
+                      <li>Context: {strengthAnalysis.breakdown.context}/10</li>
+                    </ul>
+                  </div>
+                  
+                  {strengthAnalysis.goodPoints.length > 0 && (
+                    <div>
+                      <strong>✓ Good Points:</strong>
+                      <ul>
+                        {strengthAnalysis.goodPoints.map((point, idx) => (
+                          <li key={idx}>{point}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {strengthAnalysis.improvements.length > 0 && (
+                    <div>
+                      <strong>⚠ Can Improve:</strong>
+                      <ul>
+                        {strengthAnalysis.improvements.map((improvement, idx) => (
+                          <li key={idx}>{improvement}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {strengthAnalysis.tips.length > 0 && (
+                    <div>
+                      <strong>💡 Tips:</strong>
+                      <ul>
+                        {strengthAnalysis.tips.map((tip, idx) => (
+                          <li key={idx}>{tip}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <p>No analysis available</p>
+              )}
             </div>
             <div className={styles.rectangle}>
               <p className={styles["rectangle-text"]}>Three</p>
