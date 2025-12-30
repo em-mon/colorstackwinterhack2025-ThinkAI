@@ -3,30 +3,52 @@
     justify-content: center;
     align-items: flex-end;
     padding: 20px; 
-    margin-left: 120px;
+    margin-left: 80px;
     gap: 10px; 
 }
-
 .text-box {
-    color: rgb(0, 0, 0);
+    color: #082122;
+    background-color: white;
     width: 450px;
     min-height: 150px;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    resize: vertical; 
+    padding: 15px;
+    border: 2px solid #295b53;
+    border-radius: 12px;
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.3s;
+}
+
+.text-box:focus {
+    outline: none;
+    border-color: #19b35c;
+    box-shadow: 0 0 0 3px rgba(25, 179, 92, 0.1);
+}
+
+.text-box::placeholder {
+    color: #295b53;
+    opacity: 0.6;
 }
 
 .send-button {
-    background-color: rgb(0, 0, 0);
+    background: linear-gradient(135deg, #19b35c, #295b53);
     color: white;
-    padding: 10px 20px;
+    padding: 15px 25px;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
+    transition: all 0.3s;
     height: fit-content;
 }
 
 .send-button:hover {
-    background-color: rgb(50, 50, 50);
+    background: linear-gradient(135deg, #295b53, #082122);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(8, 33, 34, 0.3);
 }
+
+.send-button:active {
+    transform: translateY(0);
+}
+
+

@@ -5,8 +5,8 @@ export default function Content({ submitted, submittedPrompt, needAnalysis, stre
     <div className={styles.container}>
       {!submitted ? (
         <div className={styles["text-area"]}>
-          <h1 className={styles.title}>T H I N K</h1>
-          <p className={styles.slogan}>Teaching users to THINK before they prompt.</p>
+          <h1 className={styles.title}>THINK AI</h1>
+          <p className={styles.slogan}>Teaching users to THINK before they prompt</p>
         </div>
       ) : (
         <div className={styles.results}>
@@ -15,7 +15,7 @@ export default function Content({ submitted, submittedPrompt, needAnalysis, stre
           </div>
           <div className={styles["rectangle-container"]}>
             <div className={styles.rectangle}>
-              <h3 className={styles["rectangle-title"]}>AI Need Analysis</h3>
+              <h3 className={styles["rectangle-title"]}>AI Need Detector</h3>
               {needAnalysis ? (
                 <div className={styles["analysis-content"]}>
                   <p><strong>Needs AI:</strong> {needAnalysis.needsAI ? 'Yes' : 'No'}</p>
