@@ -1,6 +1,281 @@
+/* Initial state - before generation */
 .card {
     height: 500px;
     width: 700px;
     background-color: white;
-    border: 2px black solid;
+    border: 2px solid #295b53;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 40px;
+    text-align: center;
+}
+
+.placeholder h2 {
+    font-size: 1.8rem;
+    color: #082122;
+    margin-bottom: 15px;
+}
+
+.placeholder p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.generateButton {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #19b35c, #295b53);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.generateButton:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.generateButton:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Carousel state - after generation */
+.carouselContainer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+.arrow {
+    background: white;
+    border: 2px solid #295b53;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #295b53;
+    flex-shrink: 0;
+}
+
+.arrow:hover {
+    background: #19b35c;
+    color: white;
+    border-color: #19b35c;
+    transform: scale(1.1);
+}
+
+.arrow:active {
+    transform: scale(0.95);
+}
+
+/* Card Content */
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.levelBadge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.levelBadge[data-level="1"] {
+    background: #e74c3c;
+}
+
+.levelBadge[data-level="2"] {
+    background: #f39c12;
+}
+
+.levelBadge[data-level="3"] {
+    background: #19b35c;
+}
+
+.originalBadge {
+    padding: 6px 12px;
+    background: #3498db;
+    color: white;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.cardContent {
+    padding: 25px;
+}
+
+/* Prompt Section */
+.promptSection {
+    margin-bottom: 20px;
+}
+
+.promptSection h3 {
+    font-size: 1rem;
+    color: #082122;
+    margin-bottom: 10px;
+}
+
+.promptBox {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #19b35c;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #333;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+/* Reasoning Section */
+.reasoningSection {
+    margin-bottom: 20px;
+}
+
+.reasoningSection h3 {
+    font-size: 1rem;
+    color: #082122;
+    margin-bottom: 10px;
+}
+
+.reasoningSection p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Impact Section */
+.impactSection {
+    margin-bottom: 20px;
+    background: #e8f8f5;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.impactSection h3 {
+    font-size: 1rem;
+    color: #082122;
+    margin-bottom: 12px;
+}
+
+.impactGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.impactStat {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.impactLabel {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.impactValue {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #19b35c;
+}
+
+/* Response Section */
+.responseSection {
+    margin-bottom: 20px;
+}
+
+.responseSection h3 {
+    font-size: 1rem;
+    color: #082122;
+    margin-bottom: 10px;
+}
+
+.responseBox {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    font-style: italic;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+/* Carousel Indicators */
+.indicators {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #295b53;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.indicator.active {
+    background: #19b35c;
+    border-color: #19b35c;
+    transform: scale(1.3);
+}
+
+.indicator:hover {
+    transform: scale(1.2);
+}
+
+/* Scrollbars */
+.promptBox::-webkit-scrollbar,
+.responseBox::-webkit-scrollbar,
+.card::-webkit-scrollbar {
+    width: 6px;
+}
+
+.promptBox::-webkit-scrollbar-track,
+.responseBox::-webkit-scrollbar-track,
+.card::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.promptBox::-webkit-scrollbar-thumb,
+.responseBox::-webkit-scrollbar-thumb,
+.card::-webkit-scrollbar-thumb {
+    background: #19b35c;
+    border-radius: 3px;
 }

@@ -1,34 +1,47 @@
 import { useState } from 'react';
 import Content from './components/Content.jsx';
 import Input from './components/Input.jsx';
+import { analyzePromptStrength } from '../../core/strengthAnalyzer.js';
 import styles from './modules/Prompt.module.css';
 
 export default function Prompt() {
   const [submitted, setSubmitted] = useState(false);
   const [prompt, setPrompt] = useState('');
+  const [submittedPrompt, setSubmittedPrompt] = useState('');
   const [isAnimating, setIsAnimating] = useState(false);
+  const [analysis, setAnalysis] = useState(null);
 
   const handleSend = () => {
     if (prompt.trim()) {
-      // Check if title is still visible (first submission)
+      const currentPrompt = prompt;
+      
+      // Save the submitted prompt
+      setSubmittedPrompt(currentPrompt);
+      
+      // Analyze the prompt
+      const strengthAnalysis = analyzePromptStrength(currentPrompt);
+      setAnalysis(strengthAnalysis);
+      
+      setPrompt('');
+      
       if (!submitted) {
         setIsAnimating(true);
-        
-        // Wait for animation to complete before showing results
         setTimeout(() => {
           setSubmitted(true);
           setIsAnimating(false);
-          setPrompt('');
-        }, 1500); // Match animation duration
-      } else {
-        setPrompt('');
+        }, 1500);
       }
     }
   };
 
   return (
     <div className={styles.container}>
-      <Content />
+      <Content 
+        submitted={submitted}
+        isAnimating={isAnimating}
+        analysis={analysis}
+        submittedPrompt={submittedPrompt}
+      />
       <Input 
         prompt={prompt}
         setPrompt={setPrompt}

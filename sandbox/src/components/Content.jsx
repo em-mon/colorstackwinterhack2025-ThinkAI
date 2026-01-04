@@ -1,16 +1,27 @@
 import styles from '../modules/Content.module.css';
-
 import StrengthResults from './StrengthResults.jsx';
 import Variations from './Variations.jsx';
 
-export default function Content() {
+export default function Content({ submitted, isAnimating, analysis, submittedPrompt }) {
   return (
     <div className={styles.container}>
-      <StrengthResults className={styles.strength}></StrengthResults>
-      <div className={styles.variation}>
-        <h1>Click through to see how the variations on your prompt change the response given:</h1>
-        <Variations></Variations>
-      </div>
+      {!submitted && !isAnimating ? (
+        <div className={styles["title-section"]}>
+          <h1 className={styles.title}>THINK AI</h1>
+          <p className={styles.slogan}>Teaching users to think before they prompt</p>
+        </div>
+      ) : submitted ? (
+        <>
+          <StrengthResults className={styles.strength} analysis={analysis} />
+
+          <div className={styles.variationSlot}>
+            <Variations
+              submittedPrompt={submittedPrompt}
+              strengthLevel={analysis?.level}
+            />
+          </div>
+        </>
+      ) : null}
     </div>
   );
 }

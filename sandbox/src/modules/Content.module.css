@@ -1,13 +1,51 @@
 .container {
-    display: flex;
-    justify-content: center;
-    flex: 1;
-    gap: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1;
+  gap: 150px;
 }
 
+/* Fixed-width slot for Variations */
+.variationSlot {
+    width: 820px; /* card (700) + arrows + gaps */
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+    margin-top: 80px;
+    margin-right: 40px;
+}
+
+/* Title Section */
+.title-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.title {
+    font-size: 8rem;
+    background: linear-gradient(90deg, #082122, #295b53, #19b35c, #fcff9a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.slogan {
+    font-size: 1.5rem;
+    color: #295b53;
+}
+
+/* Results Section */
 .strength {
-    align-self: flex-start;
+    margin-left: 100px;
     margin-top: 25px;
+    animation: fadeInUp 0.8s ease-out;
 }
 
 .variation {
@@ -15,7 +53,28 @@
     margin-top: 80px;
 }
 
-h1 {
+.variation h1 {
     font-size: large;
     padding-bottom: 20px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
